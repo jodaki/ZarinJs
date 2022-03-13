@@ -9,12 +9,10 @@ export default class Users extends Component {
    users: [], 
    isloader: true
   }
-  async componentDidMount(){
-    const respanse = await axios.get('https://reqres.in/api/users')
-    setTimeout(() => {
-      this.setState({users: respanse.data.data, isloader: false})
-    }, 2000);
-
+  
+    async componentDidMount(){
+      const respanse = await axios.get('https://reqres.in/api/users')
+        this.setState({users: respanse.data.data, isloader: false})
   }
   // componentDidMount(){
   //   axios.get('https://reqres.in/api/users')
@@ -30,18 +28,27 @@ export default class Users extends Component {
       <div>
         { 
           isloader ? (<h1 className='text-center display-6 border m-6'>loding..</h1>) :(
-            <div className="row">
+            <div className="container mt-4">
+              <button onClick={()=>{this.hendelUpdate()}} className='btn btn-primary btn-sm m-4' >Update</button>
+              <div className="row">
               {
                 this.state.users.map((user)=>{
                   return(
                       <div className='col-4'> 
                         <img  className='rounded-circle' src={user.avatar} alt="avatar" />
-                        <p>Name: {user.first_name}{user.last_name}</p>
-                        <span>id: {user.id}</span>
+                        <p className='m-2'> {user.first_name}{user.last_name}</p>
+                        <span className='m-2'>id: {user.id}</span>
+                          <div className='col-12'>
+                           
+                           <button onClick={() =>{this.hendelDelete(user)}} className='btn btn-sm btn-warning m-2'>Delete</button>
+                           <button onClick={() =>{this.hendelGreate(user)}} className='btn btn-sm btn-danger m-2'>Greate</button>
+                          </div>
+                         
                       </div>
                   )
                 })
               }
+            </div>
             </div>
           )
           
@@ -49,6 +56,16 @@ export default class Users extends Component {
         
       </div>
     )
+  }
+   
+  hendelGreate = () => {
+    console.log('handelGreate');
+  }
+  hendelDelete = (user) => {
+    console.log(user);
+  }
+  hendelUpdate = (user) => {
+    console.log(user);
   }
  
 }
