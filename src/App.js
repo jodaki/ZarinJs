@@ -1,13 +1,19 @@
-import React from 'react';
-import Users from './Page/Users';
+import React from 'react'
+import Navbar from './layout/Navbar'
+import { Route } from 'react-router-dom'
 
-function App () {
-    return (
-        <div>
-             <Users /> 
-             
-        </div>
-    );
+// pages
+    import  Home from './Page/Home'
+// finish pages
+
+export default function App() {
+  return (
+    <div>
+      
+            <Navbar />
+                 <Route path="/" component={<Home />}/> 
+
+    </div>
+  )
 }
 
-export default App;
