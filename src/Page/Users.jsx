@@ -12,8 +12,11 @@ export default class Users extends Component {
   
     async componentDidMount(){
       const respanse = await axios.get('https://reqres.in/api/users')
+      setTimeout(() => {
         this.setState({users: respanse.data.data, isloader: false})
-  }
+
+      }, 2000);
+    }
   // componentDidMount(){
   //   axios.get('https://reqres.in/api/users')
   //   .then(res => {
