@@ -1,0 +1,6 @@
+export  { default as Login}   from './Login'
+export  { default as Home }   from './Home'
+export  { default as Notpage} from './Notpage'
+export  { default as Regster} from './Regster'
+export  { default as Users}   from './Users'
+export  { default as User}    from './user'

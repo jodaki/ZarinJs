@@ -1,6 +1,7 @@
 import React, { Component, setState} from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import UsersLoder from './UsersLoder'
 
 
 export default class Users extends Component {
@@ -12,10 +13,12 @@ export default class Users extends Component {
   
     async componentDidMount(){
       const respanse = await axios.get('https://reqres.in/api/users')
-      setTimeout(() => {
-        this.setState({users: respanse.data.data, isloader: false})
+         this.setState({users: respanse.data.data, isloader: false})
+      // this time out 
+      // setTimeout(() => {
+      //   this.setState({users: respanse.data.data, isloader: false})
 
-      }, 2000);
+      // }, 1000);
     }
   // componentDidMount(){
   //   axios.get('https://reqres.in/api/users')
@@ -30,9 +33,8 @@ export default class Users extends Component {
     return (
       <div>
         { 
-          isloader ? (<h1 className='text-center display-6 border m-6'>loding..</h1>) :(
+          isloader ? (<div className="row"><UsersLoder /></div>) :(
             <div className="container mt-4">
-              <button onClick={()=>{this.hendelUpdate()}} className='btn btn-primary btn-sm m-4' >Update</button>
               <div className="row">
               {
                 this.state.users.map((user)=>{
@@ -42,8 +44,13 @@ export default class Users extends Component {
                         <p className='m-2'> {user.first_name}{user.last_name}</p>
                         <span className='m-2'>id: {user.id}</span>
                           <div className='col-12'>
-                           
-                           <button onClick={() =>{this.hendelDelete(user)}} className='btn btn-sm btn-warning m-2'>Delete</button>
+
+
+                          {/* //button for a users show */}
+                          <Link to={`users/${user.id}`}>
+                            <button className='btn btn-sm btn-warning m-2'>show</button>
+                          </Link>
+
                            <button onClick={() =>{this.hendelGreate(user)}} className='btn btn-sm btn-danger m-2'>Greate</button>
                           </div>
                          
