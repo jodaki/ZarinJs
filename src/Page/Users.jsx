@@ -43,6 +43,7 @@ export default class Users extends Component {
                         <img  className='rounded-circle' src={user.avatar} alt="avatar" />
                         <p className='m-2'> {user.first_name}{user.last_name}</p>
                         <span className='m-2'>id: {user.id}</span>
+                        <span className='m-2'>id: {user.email}</span>
                           <div className='col-12'>
 
 
